@@ -30,9 +30,9 @@ readTemplate.on('data', (templateData) => {
         const extension = path.extname(comp.name);
         const baseName = path.basename(comp.name, extension);
         const fileInner = fs.createReadStream(filePath, 'utf-8');
-        fileInner.on('data', (data) => {
-          const reg = RegExp(`{{${baseName}}}`, 'gi');
+        const reg = RegExp(`{{${baseName}}}`, 'gi');
 
+        fileInner.on('data', (data) => {
           templateData = templateData.replace(reg, data);
           fs.writeFile(indexDist, templateData, (err) => {
             if (err) {
@@ -90,3 +90,4 @@ async function copyDir(src, dest) {
 }
 copyDir(dirPath, dirDist);
 
+console.log('Сборка завершина');

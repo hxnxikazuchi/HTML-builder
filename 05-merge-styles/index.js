@@ -28,7 +28,7 @@ fsPromise.readdir(stylesPath, { withFileTypes: true }).then((files) => {
           throw err;
         });
         styleArr.forEach((line) => {
-          bundle.write(line);
+          bundle.write(`${line}\n`);
         });
         bundle.end();
       });
